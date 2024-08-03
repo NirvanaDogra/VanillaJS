@@ -43,6 +43,13 @@ export default class Carousell extends HTMLElement{
         this.setTimer()
     }
 
+    disconnectedCallback() {
+        // Clean up timers and event listeners
+        clearTimeout(this.timer);
+        this.shadowRoot.getElementById("carousellLeft").removeEventListener("click", this.handleLeftNav);
+        this.shadowRoot.getElementById("carousellRight").removeEventListener("click", this.handleRightNav);
+    }
+
     initViewPool() {
         for(let i=0; i<this.viewPoolSize; i++) {
             const element = document.createElement("img")
