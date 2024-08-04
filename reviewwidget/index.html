@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <h2>Star Rating using JS</h2>
+    <rating-widget handleclick="handleclick"></rating-widget>
+
+    <script>
+      function handleclick(event, current) {
+        window.alert(`You rated me: ${current}/5`);
+      }
+    </script>
+    <script type="module" src="./ratingwidget.js"></script>
+  </body>
+</html>
