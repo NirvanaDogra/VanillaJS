@@ -1,19 +1,18 @@
-import CustomComponent from "./CustomComponent.js";
-
+import CustomComponent from "./foundation/CustomComponent.js";
 
 class CustomeButton extends CustomComponent {
   constructor() {
     super();
-    
+    this._name = "Button";
   }
 
   connectedCallback() {
-    const buttonElem = super.render(this.createCustomStyle(), this.createCustomTemplete())
-    let clickHandler = this.getAttribute("onClick")
-    if(typeof clickHandler == "string") {
-        clickHandler = eval(clickHandler)
+    super.connectedCallback();
+    let clickHandler = this.getAttribute("onclick");
+    if (typeof clickHandler == "string") {
+      clickHandler = eval(clickHandler);
     }
-    buttonElem.addEventListener("click", clickHandler)
+    this.addEventListener("click", clickHandler);
   }
 
   createCustomStyle() {
@@ -23,7 +22,7 @@ class CustomeButton extends CustomComponent {
             outline: 0dp; 
             border: 0dp;
         }
-    `
+    `;
   }
 
   createCustomTemplete() {

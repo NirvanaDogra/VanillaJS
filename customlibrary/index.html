@@ -1,7 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <body>
-        <custom-button data-text="My Button" onClick="() => alert('Hi there!')"></custom-button>
-        <script type="module" src="./CustomButton.js"></script>
-    </body>
+  <body>
+    <custom-button
+      data-text="text"
+      onclick="() => alert('Hi there!')"
+    ></custom-button>
+    <custom-row>
+      <h1 style="background-color: aquamarine">ABC1</h1>
+      <h1>ABC2</h1>
+      <h1>ABC3</h1>
+      <h1>ABC4</h1>
+      <custom-col>
+        <h1 style="background-color: aquamarine">ABC1</h1>
+        <h1>ABC2</h1>
+        <h1>ABC3</h1>
+        <h1>ABC4</h1>
+      </custom-col>
+    </custom-row>
+    <script type="module" src="./layout/CustomColumn.js"></script>
+    <script type="module" src="./layout/CustomRow.js"></script>
+    <script type="module" src="./CustomButton.js"></script>
+  </body>
 </html>
