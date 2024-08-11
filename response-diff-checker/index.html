@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .error {
+        border-style: solid;
+        border-color: red;
+      }
+      #fromContainer {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      #submitButton {
+        text-align: center;  
+        width: 100%;  
+        height: wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="fromContainer">
+      <form id="localhostForm">
+        URL:
+        <input class="urlInput" type="url" value="http://localhost:8080" />
+        params: <input class="paramsInput" type="text" /> body:
+        <input class="bodyInput" type="text" /> method:
+        <select class="methodInput" type="requestType">
+          <option value="GET">GET</option>
+          <option value="POST">POST</option>
+        </select>
+      </form>
+
+      <form id="apimForm">
+        URL:
+        <input class="urlInput" type="url" value="http://localhost:8080" />
+        params: <input class="paramsInput" type="text" /> body:
+        <input class="bodyInput" type="text" /> method:
+        <select class="methodInput" type="requestType">
+          <option value="GET">GET</option>
+          <option value="POST">POST</option>
+        </select>
+      </form>
+    </div>
+    <div id="submitButton">
+      <button onclick="handleSubmit()">Submit</button>
+    </div>
+   
+
+    <script>
+      // function logInfo(){
+      //     console.info(`
+      //         calling POST http://localhost:3000/isEqual
+      //                     -- body ${JSON.stringify({"localhost": localFrom, "apim":apimFrom})}
+      //     `)
+      // }
+      function makeCall(localFrom, apimFrom) {
+        return fetch("http://localhost:3000/isEqual", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json", // Set the content type to JSON
+          },
+          body: JSON.stringify({
+            localhost: localFrom, // Use the variable values
+            apim: apimFrom,
+          }),
+        });
+      }
+
+      function isResponseEqual(localFormRequest, apimForm) {
+        makeCall(localFormRequest, apimForm)
+          .then(
+            (resp) => {
+              console.log(resp);
+            },
+            (err) => {
+              console.log("error");
+            }
+          )
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+      function UrlDTO(formElement) {
+        this.url = formElement.querySelector(".urlInput").value;
+        this.params = formElement.querySelector(".paramsInput").value;
+        this.body = formElement.querySelector(".bodyInput").value;
+        this.method = formElement.querySelector(".methodInput").value;
+      }
+
+      function handleSubmit(event) {
+        const localFrom = document.getElementById("localhostForm");
+        const apimFrom = document.getElementById("apimForm");
+
+        const localFormRequest = new UrlDTO(localFrom);
+        const apimFormRequest = new UrlDTO(apimFrom);
+        console.log(localFormRequest, apimFormRequest);
+        isResponseEqual(localFormRequest, apimFormRequest);
+      }
+    </script>
+  </body>
+</html>
