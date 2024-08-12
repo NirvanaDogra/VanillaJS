@@ -29,10 +29,10 @@ app.get("/test", (req, res) => {
 
 app.post("/isEqual", async (req, res) => {
   const APIM = {
-    baseURL: 'https://gbapimsnd.azure-api.net/vendor-product-hierarchy/api/',
+    baseURL: 'https://info',
     url: 'vendor-product-hierarchy/product-hierarchy?productHierarchy=s',
     headers: {
-      'Ocp-Apim-Subscription-Key': '35fd367ad18d491dacec3a693a16e02c', // Replace with your actual key
+      'Ocp-Apim-Subscription-Key': 'abc', // Replace with your actual key
       'Accept': 'application/json' // Optional, depending on API requirements
     },
     method: 'GET'
