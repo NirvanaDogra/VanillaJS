@@ -32,7 +32,7 @@ app.post("/isEqual", async (req, res) => {
     baseURL: 'https://info',
     url: 'vendor-product-hierarchy/product-hierarchy?productHierarchy=s',
     headers: {
-      'Ocp-Apim-Subscription-Key': 'abc', // Replace with your actual key
+      'Ocp-key: 'ABC', // Replace with your actual key
       'Accept': 'application/json' // Optional, depending on API requirements
     },
     method: 'GET'
